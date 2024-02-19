@@ -3,6 +3,10 @@ public class Voiture {
     private String color;
     private int speed;
 
+    final int marginSpeed = 10;
+    final int maxSpeed = 120;
+    final int minSpeed = 0;
+
     public Voiture(String model, String color) {
         this.model = model;
         this.color = color;
@@ -15,7 +19,7 @@ public class Voiture {
 
     public void accelerate() {
         if (isSlow()) {
-            speed += 10;
+            speed += marginSpeed;
             showDetails();
         } else {
             System.out.println("La vitesse maximale est atteinte.");
@@ -24,7 +28,7 @@ public class Voiture {
 
     public void decelerate() {
         if (isFast()) {
-            speed -= 10;
+            speed -= marginSpeed;
             showDetails();
         } else {
             System.out.println("La voiture est déjà à l'arrêt.");
@@ -32,11 +36,11 @@ public class Voiture {
     }
 
     private boolean isFast() {
-        return speed - 10 >= 0;
+        return speed - marginSpeed >= minSpeed;
     }
 
     private boolean isSlow() {
-        return speed + 10 <= 120;
+        return speed + marginSpeed <= maxSpeed;
     }
 
     public void showDetails() {
