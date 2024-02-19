@@ -1,39 +1,47 @@
 public class Voiture {
-    private String modele;
-    private String couleur;
-    private int vitesse;
+    private String model;
+    private String color;
+    private int speed;
 
     public Voiture(String model, String color) {
-        this.modele = model;
-        this.couleur = color;
-        this.vitesse = 0;
+        this.model = model;
+        this.color = color;
+        this.speed = 0;
     }
 
-    public int getVitesse() {
-        return this.vitesse;
+    public int getSpeed() {
+        return this.speed;
     }
 
-    public void accelerer() {
-        if (vitesse + 10 <= 120) {
-            vitesse += 10;
-            afficherDetails();
+    public void accelerate() {
+        if (isSlow()) {
+            speed += 10;
+            showDetails();
         } else {
             System.out.println("La vitesse maximale est atteinte.");
         }
     }
 
-    public void ralentir() {
-        if (vitesse - 10 >= 0) {
-            vitesse -= 10;
-            afficherDetails();
+    public void decelerate() {
+        if (isFast()) {
+            speed -= 10;
+            showDetails();
         } else {
             System.out.println("La voiture est déjà à l'arrêt.");
         }
     }
 
-    public void afficherDetails() {
-        System.out.println("Modèle : " + modele);
-        System.out.println("Couleur : " + couleur);
-        System.out.println("Vitesse actuelle : " + vitesse);
+    private boolean isFast() {
+        return speed - 10 >= 0;
+    }
+
+    private boolean isSlow() {
+        return speed + 10 <= 120;
+    }
+
+    public void showDetails() {
+        System.out.println("Modèle : " + model);
+        System.out.println("Couleur : " + color);
+        System.out.println("Vitesse actuelle : " + speed);
     }
 }
